@@ -1,119 +1,72 @@
 # Always UI
 
-**Design for the task. Check for the defects. Guardrails, not taste.**
+[English](README.md) · [简体中文](README.zh-CN.md) · [MIT License](LICENSE)
 
-**Always UI** is an open-source Agent Skill for UI design and reviews. It has two independent modes:
+**The right layout for the job. Fewer things that feel off.**
 
-| Mode | Ask | Returns |
-| --- | --- | --- |
-| **design** | What layout and interactions fit this kind of product? | Workflow diagnosis, recommended archetype, navigation/region plan, responsive behavior, trade-offs |
-| **check** | What's confusing, visually noisy, inconsistent or broken here? | Evidence-backed findings, priority, minimal improvements and verifiable acceptance criteria |
+A chat app shouldn't look like an analytics dashboard. A settings screen shouldn't need three borders and two checkmarks to show one selection.
 
-Unlike a one-style-fits-all design prompt, it avoids prescribing a brand palette, universal component library, radius scale, or aesthetic. Its objective is **good decisions without eliminating originality**.
+**Always UI** is a skill for coding agents that helps with both: deciding how an interface should work, and catching the details that make it awkward to use. It works with your product's existing style instead of replacing it with another template.
 
-## Quick start
+## What it does
 
-The repository root is a standalone Skill folder. The Skill ID is **`always-ui`**.
+### `design` — Find the right layout
 
-### Install
+Start with what people actually do in your app, not a collection of ready-made cards. Always UI looks at the workflow and suggests a layout, navigation, content hierarchy, and responsive behavior.
 
-Codex user-level example:
+It covers **11 kinds of interfaces** — chat, SaaS workspaces, analytics, project management, e-commerce, editors, social apps, file libraries, finance, admin tools, and booking — with room for hybrids.
+
+```text
+$always-ui design Plan a desktop chat app.
+Compare two layouts before choosing one.
+```
+
+[Explore the layout guides](references/design-archetypes.md)
+
+### `check` — Catch what looks or feels wrong
+
+Borders inside borders. A checkbox and a checkmark saying the same thing. Five primary buttons. The wrong control for the job. Feedback that vanishes before you can act.
+
+Always UI checks **20 common UI problems**, explains why they matter, and suggests small fixes. It won't call an intentional design choice a mistake just because it's unusual.
+
+```text
+$always-ui check Review this settings screen.
+Look for redundant borders, selection markers, and confusing controls.
+```
+
+[Explore the check rules](references/check-catalog.md)
+
+## Install
+
+**Don't want to touch the terminal? Tell your coding agent:**
+
+> Install Always UI in this project using `npx skills add handFOOLed/always-ui`, then use `$always-ui design` to plan my interface.
+
+Allow your agent to run the install command, and you're ready to start.
+
+**From the terminal** — run this in your project directory:
 
 ```bash
-git clone https://github.com/handFOOLed/always-ui.git ~/.agents/skills/always-ui
+npx skills add handFOOLed/always-ui
 ```
 
-Project-level example: copy/clone the repository to `<project>/.agents/skills/always-ui/`, with `SKILL.md` at that path. Do not overwrite existing customizations without review. Different Agent hosts may use different discovery paths.
-
-### Use design mode
-
-```text
-$always-ui design Plan the main layout for a team messaging app.
-Compare two desktop structures and adapt the choice for mobile.
-Keep our existing purple brand identity.
-```
-
-```text
-$always-ui design We are building a B2B SaaS product for sales analytics.
-Analyze what users do before choosing navigation, panels and charts.
-```
-
-### Use check mode
-
-```text
-$always-ui check Review this settings screen for nested borders,
-redundant selection indicators and switch/checkbox misuse.
-Keep the existing look; report the top five problems.
-```
-
-```text
-$always-ui check Inspect the file transfer panel. Check filename
-truncation, feedback, keyboard focus and dense controls.
-```
-
-When no mode is specified, the Skill infers **design** for planning/creation and **check** for auditing/fixing an existing UI.
-
-## Design mode — 11 workflow archetypes
-
-The Skill evaluates the actual user workflow before selecting a layout, rather than treating every SaaS app as a dashboard.
-
-| Family | Primary job |
-| --- | --- |
-| SaaS / multi-tool workspace | Resume work across modules |
-| Messaging / chat | Follow conversations and reply |
-| Projects / tasks | Organize items and progress |
-| Analytics / monitoring | Compare data and investigate changes |
-| E-commerce / marketplace | Find, evaluate and transact |
-| Editor / knowledge base | Create and structure content |
-| Social / community | Discover discussions and engage |
-| Media / file library | Browse, preview and organize assets |
-| Finance / transactions | Inspect and act on precise records |
-| Admin / operations | Resolve issues and manage systems |
-| Booking / services | Select resources, time and confirm |
-
-Every archetype has fit criteria, desktop/mobile direction, important states, anti-patterns and alternatives in [`references/design-archetypes.md`](references/design-archetypes.md). Hybrids are supported; a "chat SaaS" should usually be chat-first, not dashboard-first.
-
-## Check mode — 20 anti-patterns
-
-Check mode looks for user-visible problems such as:
-
-- **Frames inside frames** and redundant selection treatments (outline + checkbox + checkmark for the same state).
-- **Wrong controls** — using multiple checkboxes for mutually exclusive choices, or switches for form values that aren't saved immediately.
-- **Unclear hierarchy, over-decoration, bad density, inconsistent components** and too many competing primary actions.
-- **Misleading save/error feedback**, invisible focus, unusable responsive views, broken motion or desktop drag behavior.
-
-A checker labels each issue as an **actual defect**, **high-confidence design problem**, or **optional polish**. It also states what should **not** be changed. Full checks: [`references/check-catalog.md`](references/check-catalog.md).
-
-## Repository structure
-
-- [`SKILL.md`](SKILL.md): mode selection and shared workflow.
-- [`references/design-archetypes.md`](references/design-archetypes.md): 11 task-led layout archetypes for **design**.
-- [`references/check-catalog.md`](references/check-catalog.md): 20 design and interaction anti-patterns for **check**.
-- [`references/implementation-notes.md`](references/implementation-notes.md): conditional technical pitfalls.
-- [`references/visual-guidance.md`](references/visual-guidance.md): optional restrained/tonal style guidance (not automatically loaded).
-- [`tests/evaluation-cases.md`](tests/evaluation-cases.md): manual evaluations and regression scenarios.
-- [`scripts/validate.py`](scripts/validate.py): offline structure and links check.
-
-## Migration from v0.1.0
-
-**Breaking invocation rename:** `$interaction-design-rules` → **`$always-ui`**. Rename the installed skill folder and update your project `AGENTS.md`, prompts or scripts accordingly. The old invocation is **not** an alias; this is a deliberate unified name for repository and Skill.
-
-The `check` mode retains the original interaction safeguards. `design` is new and does not override an approved design system.
-
-## Verification
+Want it available across projects?
 
 ```bash
-python scripts/validate.py
+npx skills add handFOOLed/always-ui -g
 ```
 
-Static validation confirms packaging, referenced files and mode documentation. It **does not prove better Agent design ability**. Use [manual A/B cases](tests/evaluation-cases.md) to compare with and without Always UI, assess both interaction quality and creativity, and report what was actually tested.
+**Prefer installing the CLI with npm?**
 
-## Contributing
+```bash
+npm install -g skills
+skills add handFOOLed/always-ui
+```
 
-Contributions should describe a real user task, a reproducible interface problem or product archetype, the expected behavior and an evaluation case. Do not promote a personal visual preference to a universal rule.
+These commands use the [Skills CLI](https://github.com/vercel-labs/skills), which installs the skill for supported coding agents. The project is distributed from GitHub; there's no separate `always-ui` package on npm.
 
-## License
+Once installed, start with `$always-ui design` or `$always-ui check` in your agent.
 
-[MIT](LICENSE) · [handFOOLed/always-ui](https://github.com/handFOOLed/always-ui).
+---
 
-[简体中文](README.zh-CN.md)
+Built by [handFOOLed](https://github.com/handFOOLed). Feedback and contributions are welcome.
