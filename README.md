@@ -1,82 +1,119 @@
 # Always UI
 
-**Guardrails, not taste.**
+**Design for the task. Check for the defects. Guardrails, not taste.**
 
-**Always UI** is an open-source Agent Skill named `interaction-design-rules`. It helps AI coding agents prevent interaction defects **without flattening every product into the same aesthetic**.
+**Always UI** is an open-source Agent Skill for UI design and reviews. It has two independent modes:
 
-It covers control semantics, keyboard focus and selected states, honest status feedback, expanding content, reduced motion, filename display, and native desktop window dragging. It does **not** select your palette, layout, fonts, component library, radius scale, or brand identity.
+| Mode | Ask | Returns |
+| --- | --- | --- |
+| **design** | What layout and interactions fit this kind of product? | Workflow diagnosis, recommended archetype, navigation/region plan, responsive behavior, trade-offs |
+| **check** | What's confusing, visually noisy, inconsistent or broken here? | Evidence-backed findings, priority, minimal improvements and verifiable acceptance criteria |
 
-The original guidelines were written in Chinese. This open-source edition separates general interaction safeguards from optional visual preferences, preserving the original goal: tell an agent **what must not break**, not how its design must look.
+Unlike a one-style-fits-all design prompt, it avoids prescribing a brand palette, universal component library, radius scale, or aesthetic. Its objective is **good decisions without eliminating originality**.
 
-## Install
+## Quick start
 
-This repository's **root is the skill folder**; the Skill ID is `interaction-design-rules` even though the repository is called `always-ui`.
+The repository root is a standalone Skill folder. The Skill ID is **`always-ui`**.
 
-For Codex user-level installation:
+### Install
+
+Codex user-level example:
 
 ```bash
-git clone https://github.com/handFOOLed/always-ui.git ~/.agents/skills/interaction-design-rules
+git clone https://github.com/handFOOLed/always-ui.git ~/.agents/skills/always-ui
 ```
 
-For project-scoped installation, copy the repository contents into:
+Project-level example: copy/clone the repository to `<project>/.agents/skills/always-ui/`, with `SKILL.md` at that path. Do not overwrite existing customizations without review. Different Agent hosts may use different discovery paths.
+
+### Use design mode
 
 ```text
-<project>/.agents/skills/interaction-design-rules/SKILL.md
-```
-
-Do not overwrite an existing folder without reviewing local changes. Paths and invocation conventions vary by agent host; see its documentation.
-
-In Codex, invoke `$interaction-design-rules` explicitly, or allow the host to match the skill description.
-
-## Usage
-
-```text
-$interaction-design-rules Review the settings panel for control semantics,
-visible keyboard focus, and truthful save feedback. Keep our current visual style.
+$always-ui design Plan the main layout for a team messaging app.
+Compare two desktop structures and adapt the choice for mobile.
+Keep our existing purple brand identity.
 ```
 
 ```text
-$interaction-design-rules Fix filename truncation in a narrow transfer sidebar.
-Preserve useful extensions and leave stored filenames untouched.
+$always-ui design We are building a B2B SaaS product for sales analytics.
+Analyze what users do before choosing navigation, panels and charts.
 ```
 
-Optional project instruction:
+### Use check mode
 
-```markdown
-Use $interaction-design-rules when implementing or reviewing UI interactions.
-Keep the product's existing design system and only apply relevant rules.
+```text
+$always-ui check Review this settings screen for nested borders,
+redundant selection indicators and switch/checkbox misuse.
+Keep the existing look; report the top five problems.
 ```
 
-## Contents
+```text
+$always-ui check Inspect the file transfer panel. Check filename
+truncation, feedback, keyboard focus and dense controls.
+```
 
-- [`SKILL.md`](SKILL.md): core guardrails and scope-first workflow.
-- [`references/implementation-notes.md`](references/implementation-notes.md): conditional implementation pitfalls and examples.
-- [`references/visual-guidance.md`](references/visual-guidance.md): **opt-in** visual polish, never a mandatory aesthetic.
-- [`tests/evaluation-cases.md`](tests/evaluation-cases.md): ten manual agent evaluation scenarios.
-- [`scripts/validate.py`](scripts/validate.py): stdlib-only packaging and link validation.
+When no mode is specified, the Skill infers **design** for planning/creation and **check** for auditing/fixing an existing UI.
 
-## Principles
+## Design mode — 11 workflow archetypes
 
-1. **Product first:** preserve explicit product decisions, existing tokens, and design language.
-2. **Interaction truth:** correct control semantics, focus visibility, and honest failure recovery.
-3. **No blanket style mandates:** no universal border thickness, font-size cap, or radius scale.
-4. **Load details only when needed:** conditional references avoid over-instruction.
-5. **Verify honestly:** distinguish checked behavior from untested devices and assumptions.
+The Skill evaluates the actual user workflow before selecting a layout, rather than treating every SaaS app as a dashboard.
 
-## Validate
+| Family | Primary job |
+| --- | --- |
+| SaaS / multi-tool workspace | Resume work across modules |
+| Messaging / chat | Follow conversations and reply |
+| Projects / tasks | Organize items and progress |
+| Analytics / monitoring | Compare data and investigate changes |
+| E-commerce / marketplace | Find, evaluate and transact |
+| Editor / knowledge base | Create and structure content |
+| Social / community | Discover discussions and engage |
+| Media / file library | Browse, preview and organize assets |
+| Finance / transactions | Inspect and act on precise records |
+| Admin / operations | Resolve issues and manage systems |
+| Booking / services | Select resources, time and confirm |
+
+Every archetype has fit criteria, desktop/mobile direction, important states, anti-patterns and alternatives in [`references/design-archetypes.md`](references/design-archetypes.md). Hybrids are supported; a "chat SaaS" should usually be chat-first, not dashboard-first.
+
+## Check mode — 20 anti-patterns
+
+Check mode looks for user-visible problems such as:
+
+- **Frames inside frames** and redundant selection treatments (outline + checkbox + checkmark for the same state).
+- **Wrong controls** — using multiple checkboxes for mutually exclusive choices, or switches for form values that aren't saved immediately.
+- **Unclear hierarchy, over-decoration, bad density, inconsistent components** and too many competing primary actions.
+- **Misleading save/error feedback**, invisible focus, unusable responsive views, broken motion or desktop drag behavior.
+
+A checker labels each issue as an **actual defect**, **high-confidence design problem**, or **optional polish**. It also states what should **not** be changed. Full checks: [`references/check-catalog.md`](references/check-catalog.md).
+
+## Repository structure
+
+- [`SKILL.md`](SKILL.md): mode selection and shared workflow.
+- [`references/design-archetypes.md`](references/design-archetypes.md): 11 task-led layout archetypes for **design**.
+- [`references/check-catalog.md`](references/check-catalog.md): 20 design and interaction anti-patterns for **check**.
+- [`references/implementation-notes.md`](references/implementation-notes.md): conditional technical pitfalls.
+- [`references/visual-guidance.md`](references/visual-guidance.md): optional restrained/tonal style guidance (not automatically loaded).
+- [`tests/evaluation-cases.md`](tests/evaluation-cases.md): manual evaluations and regression scenarios.
+- [`scripts/validate.py`](scripts/validate.py): offline structure and links check.
+
+## Migration from v0.1.0
+
+**Breaking invocation rename:** `$interaction-design-rules` → **`$always-ui`**. Rename the installed skill folder and update your project `AGENTS.md`, prompts or scripts accordingly. The old invocation is **not** an alias; this is a deliberate unified name for repository and Skill.
+
+The `check` mode retains the original interaction safeguards. `design` is new and does not override an approved design system.
+
+## Verification
 
 ```bash
 python scripts/validate.py
 ```
 
-The validator checks file structure and links, **not** the quality of the agent's design choices. Run scenarios in [`tests/evaluation-cases.md`](tests/evaluation-cases.md) with and without the skill before claiming an improvement.
+Static validation confirms packaging, referenced files and mode documentation. It **does not prove better Agent design ability**. Use [manual A/B cases](tests/evaluation-cases.md) to compare with and without Always UI, assess both interaction quality and creativity, and report what was actually tested.
 
 ## Contributing
 
-Issues and pull requests should focus on an **observable UI interaction problem**, a reproducible situation, and the smallest generally useful safeguard. Include an evaluation scenario for new rules. Do not turn personal taste into a universal requirement.
+Contributions should describe a real user task, a reproducible interface problem or product archetype, the expected behavior and an evaluation case. Do not promote a personal visual preference to a universal rule.
 
 ## License
 
-[MIT](LICENSE) · Maintained at [handFOOLed/always-ui](https://github.com/handFOOLed/always-ui).
+[MIT](LICENSE) · [handFOOLed/always-ui](https://github.com/handFOOLed/always-ui).
 
 [简体中文](README.zh-CN.md)
