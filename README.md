@@ -2,71 +2,71 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [MIT License](LICENSE)
 
-**The right layout for the job. Fewer things that feel off.**
+**Get the layout right. Fix what feels off.**
 
-A chat app shouldn't look like an analytics dashboard. A settings screen shouldn't need three borders and two checkmarks to show one selection.
+A chat app shouldn't be forced into a dashboard layout. And one selected item doesn't need a border, a checkbox, and another checkmark to make its point.
 
-**Always UI** is a skill for coding agents that helps with both: deciding how an interface should work, and catching the details that make it awkward to use. It works with your product's existing style instead of replacing it with another template.
+**Always UI** is a UI/UX design skill for desktop coding agents. Before you start building, it helps figure out what layout actually fits your app. Afterward, it checks what looks wrong, feels awkward, or gets in the way.
 
 ## What it does
 
-### `design` — Find the right layout
+### `design` — Get the layout right first
 
-Start with what people actually do in your app, not a collection of ready-made cards. Always UI looks at the workflow and suggests a layout, navigation, content hierarchy, and responsive behavior.
+"Don't use a dropdown here. Make that a card instead." Tired of patching up a messy interface one component at a time?
 
-It covers **11 kinds of interfaces** — chat, SaaS workspaces, analytics, project management, e-commerce, editors, social apps, file libraries, finance, admin tools, and booking — with room for hybrids.
+**Always UI** starts with how people actually use your app. From there, it works out the navigation, page structure, information hierarchy, and layouts for different screen sizes.
 
-```text
-$always-ui design Plan a desktop chat app.
-Compare two layouts before choosing one.
-```
-
-[Explore the layout guides](references/design-archetypes.md)
-
-### `check` — Catch what looks or feels wrong
-
-Borders inside borders. A checkbox and a checkmark saying the same thing. Five primary buttons. The wrong control for the job. Feedback that vanishes before you can act.
-
-Always UI checks **20 common UI problems**, explains why they matter, and suggests small fixes. It won't call an intentional design choice a mistake just because it's unusual.
+It covers **11 types of interfaces**, including chat, SaaS workspaces, analytics, project management, e-commerce, editors, communities, file managers, finance, admin tools, and booking. Hybrid apps don't have to be forced into a single template.
 
 ```text
-$always-ui check Review this settings screen.
-Look for redundant borders, selection markers, and confusing controls.
+$always-ui design Help me plan the main interface for my app.
 ```
 
-[Explore the check rules](references/check-catalog.md)
+[See the 11 layout guides](references/design-archetypes.md)
+
+### `check` — Find what looks wrong or doesn't work
+
+Boxes inside boxes. Duplicate checkmarks. Buttons fighting for attention. Switches and checkboxes used where they don't belong…
+
+Always UI checks **20 common UI problems**. It shows you what's wrong, why it's a problem, and the smallest change that would fix it. Your app can still have its own personality; being different doesn't make a design wrong.
+
+```text
+$always-ui check Review this page without changing its visual style.
+```
+
+[See the 20 check rules](references/check-catalog.md)
 
 ## Install
 
-**Don't want to touch the terminal? Tell your coding agent:**
+**Don't want to type commands? Just tell your coding agent:**
 
-> Install Always UI in this project using `npx skills add handFOOLed/always-ui`, then use `$always-ui design` to plan my interface.
+> Install Always UI in this project with `npx skills add handFOOLed/always-ui`, then use `$always-ui design` to help me plan the interface.
 
-Allow your agent to run the install command, and you're ready to start.
+That's all it takes to get started.
 
-**From the terminal** — run this in your project directory:
+**From the terminal** — run one of these in your project directory:
+
+**Project install**
 
 ```bash
 npx skills add handFOOLed/always-ui
 ```
 
-Want it available across projects?
+**Global install**
 
 ```bash
 npx skills add handFOOLed/always-ui -g
 ```
 
-**Prefer installing the CLI with npm?**
+**Install the CLI globally with npm**
 
 ```bash
 npm install -g skills
 skills add handFOOLed/always-ui
 ```
 
-These commands use the [Skills CLI](https://github.com/vercel-labs/skills), which installs the skill for supported coding agents. The project is distributed from GitHub; there's no separate `always-ui` package on npm.
-
-Once installed, start with `$always-ui design` or `$always-ui check` in your agent.
+These npm commands use the [Skills CLI](https://github.com/vercel-labs/skills) to install the skill from GitHub. Once it's installed, just enter `$always-ui design` or `$always-ui check` in your agent.
 
 ---
 
-Built by [handFOOLed](https://github.com/handFOOLed). Feedback and contributions are welcome.
+Maintained by [handFOOLed](https://github.com/handFOOLed). Issues and contributions are welcome.
