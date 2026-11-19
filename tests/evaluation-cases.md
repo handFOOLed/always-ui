@@ -50,6 +50,24 @@ Use these as **behavioral evaluations**, not merely text-matching tests. Run the
 | C09 | `$always-ui check Error toast disappears before the user can retry a failed transfer.` | Treats as actionable state defect with persistent recovery | Replaces with a prettier transient toast |
 | C10 | `$always-ui check A deliberately dense financial table uses minimal padding.` | Checks readability, alignment and interaction before recommending density change | Calls dense UI ugly on sight |
 
+## Visual discipline regression cases (from the Handoff A/B experiment)
+
+These cases test the **four new rules in both modes**. Compare the application's own UI separately from a previewed client's artwork, and check for false positives as well as missing critiques.
+
+| ID | Mode / task prompt | Expected behavior | Common failure |
+| --- | --- | --- | --- |
+| V01-D | `$always-ui design Build a creative delivery workspace with a bright client mockup in the main preview.` | Gives shell colors clear roles; leaves the client's bright preview unchanged; avoids oversaturating passive controls | Treats the artwork's colors as UI defects, recolors user content, or makes every shell element glow |
+| V01-C | `$always-ui check The shell uses vivid purple for navigation, red for routine tabs, cyan for secondary buttons, and green for selected file cards. The preview is a colorful automotive dashboard.` | Flags competing **shell** accents where their roles overlap, preserves semantic colors and the preview | Counts the preview's gradient as an application-shell error or bans multiple colors |
+| V02-D | `$always-ui design Plan actions for a file-review screen: Deliver in the header; Reply in the comment composer; Upload revision in file details.` | Defines local primary actions for distinct workflows and quieter utilities; does not insist on one CTA across entire screen | Makes all three huge glowing pills or prohibits multiple local primary actions |
+| V02-C | `$always-ui check A settings form has three filled violet buttons (Save, Reset, Help) and a tooltip icon beside every label.` | Prioritizes Save in the local form, de-emphasizes secondary actions, judges icon usefulness | Removes focus/click affordance or blindly bans pill buttons |
+| V03-D | `$always-ui design Build an expressive music app that uses gradients and playful motion as deliberate brand elements.` | Preserves requested expressiveness, uses effects with clear hierarchy and reduced-motion support | Enforces grayscale/flat design or indiscriminate glows on every control |
+| V03-C | `$always-ui check A dashboard has gradient buttons, glowing icons, shadows and borders on almost every toolbar item. A central artwork has its own gradient.` | Critiques unhelpful chrome effects with specific reasons, leaves embedded artwork alone | Declares all gradients bad, including the artwork |
+| V04-D | `$always-ui design Display 70 version comments, with reply and resolve actions per comment.` | Considers compact rows/shared panel versus cards; retains useful per-comment actions and selection | Wraps each comment and reply in multiple decorated cards without purpose |
+| V04-C | `$always-ui check Every file in a homogeneous list has an outer card, inner card and outlined pill, but a separate draggable asset grid uses distinct cards as drag targets.` | Simplifies only the list's redundant containers; keeps drag cards with a real interaction role | Bans every card or removes needed drag/focus targets |
+| V-KEEP | `$always-ui check The app is intentionally maximalist, with semantic status colors and accessible focus outlines. Explain what must stay.` | Reports only evidenced problems, identifies valid brand/status/focus exceptions and what to keep | Recommends a blanket muted theme or removes focus indicators |
+
+When possible, rerun the **same Handoff brief and same mockup content** with and without this change. Score whether the agent improves visual hierarchy **without** removing the product's personality, semantic signals, or the client's preview content. These are planned manual cases, not completed Agent results.
+
 ## A/B evaluation protocol
 
 1. Use the **same product brief, model, thinking budget, source revision, and test environment** across skill-off, `design` and `check` conditions. Include a visually expressive control case to detect over-standardization.

@@ -115,6 +115,30 @@ For each applicable rule, record: **where → what is visible/behaves incorrectl
 - **Prefer:** consistent role, semantics and feedback, adapted to each platform's conventions.
 - **Do NOT flag:** intentional differences between touch and keyboard experiences.
 
+## D. Visual discipline: four cross-mode checks
+
+These are actionable checks from [visual discipline](visual-discipline.md), not taste-based bans. Compare the **application shell** to its own brand/semantics; do not count colorful customer artwork or embedded previews as decorative UI.
+
+### C21 — Color restraint (V01)
+- **Look for:** competing high-saturation accents on routine controls, state colors used as decoration, or one color doing conflicting jobs across the screen.
+- **Prefer:** purposeful brand/action, semantic status, focus/selection, and neutral roles; quiet nonessential accents without removing meaning.
+- **Do NOT flag:** colorful previews, expressive brands, categorical visualizations, or distinct status colors when they preserve clarity.
+
+### C22 — Button hierarchy (V02)
+- **Look for:** multiple equally loud CTAs in one decision zone, glowing pill buttons for routine tools, or icons beside every label without an identifiable benefit.
+- **Prefer:** one clearly prioritized next step per **local action group**, quieter secondary controls, icons that disambiguate rather than decorate.
+- **Do NOT flag:** independently scoped primary actions in different parts of a page, genuinely equivalent choices, or product-consistent pill/icon buttons.
+
+### C23 — Decoration justification (V03)
+- **Look for:** gradients, glows, glass, shadows, badges and layered outlines with no role in hierarchy, interaction, grouping or deliberate identity.
+- **Prefer:** fewer effects with identifiable purpose. Ask which information or affordance disappears if an effect is removed; simplify only the redundant parts.
+- **Do NOT flag:** legitimate brand expression, meaningful depth/focus cues, or artwork in a file/design preview. Decorative restraint must not remove keyboard-focus visibility.
+
+### C24 — Component economy (V04)
+- **Look for:** every repeated file, comment or metric put inside a separate rounded card, sometimes with another card inside it, despite all items serving one list.
+- **Prefer:** list/row structure, spacing, shared panels or subtle surface differentiation where they convey the same information more clearly.
+- **Do NOT flag:** cards needed for separate actions, independent objects, selection/drag affordances, accessible targets or meaningful grouping.
+
 ## Triage rubric
 
 | Class | Definition | What to do |

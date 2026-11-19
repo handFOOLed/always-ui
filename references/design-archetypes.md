@@ -145,7 +145,8 @@ Choose **one primary archetype**, optionally **one secondary archetype**. If a p
 2. **Choice:** primary archetype + optional secondary, with why it fits.
 3. **Structure:** main regions in priority order; desktop and mobile adaptation; one alternative considered.
 4. **States:** first use, selected, empty/loading/error, permissions, search/filters if needed.
-5. **Anti-patterns:** 2–4 task-specific things to avoid (not blanket style prohibitions).
-6. **Open decisions:** only the decisions materially affecting the implementation.
+5. **Visual discipline:** define purposeful color roles, local primary-vs-secondary actions, which decorative effects earn their place, and whether repeated items need cards; use [visual discipline](visual-discipline.md) without applying a preset aesthetic.
+6. **Anti-patterns:** 2–4 task-specific things to avoid (not blanket style prohibitions).
+7. **Open decisions:** only the decisions materially affecting the implementation.
 
 Patterns can be deliberately broken for good reasons. The user and product context decide the design; this catalog helps an Agent reason, not obey a formula.

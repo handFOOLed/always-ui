@@ -95,6 +95,24 @@ def main() -> None:
     if check_count < 15:
         fail(f"Expected comprehensive check anti-pattern catalog; found {check_count}")
 
+    visual_rules = (
+        "Color restraint",
+        "Button hierarchy",
+        "Decoration justification",
+        "Component economy",
+    )
+    visual_reference = (ROOT / "references/visual-discipline.md")
+    if not visual_reference.is_file():
+        fail("Missing shared visual discipline reference")
+    visual_text = visual_reference.read_text(encoding="utf-8")
+    for index, rule in enumerate(visual_rules, start=1):
+        if rule not in body:
+            fail(f"SKILL.md missing visual rule: {rule}")
+        if f"V{index:02d} — {rule}" not in visual_text:
+            fail(f"Visual discipline reference missing V{index:02d}: {rule}")
+        if f"C{20 + index:02d} — {rule}" not in checks:
+            fail(f"Check catalog missing C{20 + index:02d}: {rule}")
+
     print(
         f"PASS: {name}; modes=design/check; "
         f"{archetype_count} archetypes; {check_count} checks; "
