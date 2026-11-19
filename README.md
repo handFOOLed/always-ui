@@ -28,13 +28,13 @@ $always-ui design Help me plan the main interface for my app.
 
 Boxes inside boxes. Duplicate checkmarks. Buttons fighting for attention. Switches and checkboxes used where they don't belong…
 
-Always UI checks **20 common UI problems**. It shows you what's wrong, why it's a problem, and the smallest change that would fix it. Your app can still have its own personality; being different doesn't make a design wrong.
+Always UI checks **24 common UI problems**. It shows you what's wrong, why it's a problem, and the smallest change that would fix it. Your app can still have its own personality; being different doesn't make a design wrong.
 
 ```text
 $always-ui check Review this page without changing its visual style.
 ```
 
-[See the 20 check rules](references/check-catalog.md)
+[See the 24 check rules](references/check-catalog.md)
 
 ## Install
 
