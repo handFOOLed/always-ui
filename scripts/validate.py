@@ -16,6 +16,7 @@ REQUIRED_FILES = (
     "README.zh-CN.md",
     "LICENSE",
     "references/design-archetypes.md",
+    "references/design-intensity.md",
     "references/check-catalog.md",
     "references/implementation-notes.md",
     "references/visual-guidance.md",
@@ -57,7 +58,7 @@ def main() -> None:
         fail(f"Skill name must be {EXPECTED_NAME!r}")
     if not description or len(description) > 1024:
         fail("Invalid description")
-    for mode in ("design", "check"):
+    for mode in ("creative", "design", "improve", "check"):
         if not re.search(rf"(?im)^##\s+Mode:\s*{mode}\s*$", body):
             fail(f"Missing {mode} mode section in SKILL.md")
         if f"$always-ui {mode}" not in content:
@@ -82,7 +83,7 @@ def main() -> None:
 
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     readme_zh = (ROOT / "README.zh-CN.md").read_text(encoding="utf-8")
-    for mode in ("design", "check"):
+    for mode in ("creative", "design", "improve", "check"):
         for label, data in (("README.md", readme), ("README.zh-CN.md", readme_zh)):
             if f"$always-ui {mode}" not in data:
                 fail(f"{label} missing $always-ui {mode} usage")
@@ -149,8 +150,23 @@ def main() -> None:
         fail("SKILL.md still treats core references as optional")
     required_reference_rows = (
         (
-            "design",
+            "creative",
+            "references/design-intensity.md",
             "references/design-archetypes.md",
+            "references/value-presets.md",
+            "references/visual-discipline.md",
+        ),
+        (
+            "design",
+            "references/design-intensity.md",
+            "references/design-archetypes.md",
+            "references/value-presets.md",
+            "references/visual-discipline.md",
+        ),
+        (
+            "improve",
+            "references/design-intensity.md",
+            "references/check-catalog.md",
             "references/value-presets.md",
             "references/visual-discipline.md",
         ),
@@ -177,8 +193,20 @@ def main() -> None:
     if not all(f"| R{index:02d} |" in tests for index in range(1, 7)):
         fail("Expected six reference-first regression cases (R01-R06)")
 
+    intensity = (ROOT / "references/design-intensity.md").read_text(encoding="utf-8")
+    for mode in ("creative", "design", "improve", "check"):
+        if not re.search(rf"(?m)^## {mode.capitalize()}(?: —|\\s*$)", intensity):
+            fail(f"Design intensity guide missing mode: {mode}")
+    if "not merely recolored" not in intensity:
+        fail("Creative mode must require a meaningful visual departure")
+    if "Small corrections" not in intensity:
+        fail("Improve mode must limit changes to small corrections")
+    tests = (ROOT / "tests/evaluation-cases.md").read_text(encoding="utf-8")
+    if not all(f"| M{index:02d} |" in tests for index in range(1, 13)):
+        fail("Expected twelve design-intensity regression cases (M01-M12)")
+
     print(
-        f"PASS: {name}; modes=design/check; "
+        f"PASS: {name}; modes=creative/design/improve/check; "
         f"{archetype_count} archetypes; {check_count} checks; "
         f"{len(markdown_files)} markdown files; {links_checked} local links"
     )
