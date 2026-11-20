@@ -1,12 +1,12 @@
 # Value presets — choose from the table, don't invent numbers
 
-This is the **numeric decision table for `$always-ui design`**. It applies when creating a new visual system or adding tokens to a product that has no matching values.
+This is the **numeric decision table for `$always-ui creative`, `$always-ui design`, and `$always-ui improve`**. It applies when selecting new visual tokens or adding values to a product without matching tokens. In `check`, it is a reference for spotting inconsistent new values, **not** a reason to invalidate the established design system.
 
 **Rule:** Do not choose arbitrary fixed UI measurements. If a new design needs a literal spacing, font size, weight, radius, border width, icon/control size, opacity, elevation, motion duration, breakpoint or z-layer, **pick a value from its category below**. Reuse that choice through a named token; do not sprinkle identical raw values across components.
 
 ## Order of precedence
 
-1. **Existing project tokens win.** Read CSS variables, Tailwind theme/config, component-library tokens, native platform metrics and Owner decisions. If they already define a scale, use it—even if it differs from this table. Do not silently install a second scale.
+1. **Existing project tokens win by default.** Read CSS variables, Tailwind theme/config, component-library tokens, native platform metrics and Owner decisions. In `design` and `improve`, reuse the existing scale—even if it differs from this table. In an **explicitly authorized `creative` redesign**, study existing tokens as the baseline; intentionally changed *visual* roles may receive new token values selected from the categories below. Never silently install a competing second scale or override non-negotiable brand/platform constraints.
 2. **No matching token? Choose from these tables.** Introduce a semantic token and map it to one of the values *in the correct category*. Do not create `17px` or `27px` because it looks nicer than the neighboring steps.
 3. **Only if neither works:** a documented accessibility/platform requirement, external asset specification, content-driven geometry or genuine layout constraint may need a nonpreset value. Name the exception and reason; add it to the project's tokens deliberately, rather than as a one-off literal.
 4. Use fluid or intrinsic layout (`auto`, `min-content`, `max-content`, `1fr`, `minmax()`, `100%`, and token-based `clamp()/calc()`) rather than fixing widths/heights just to satisfy a table. Calculated sizes derived from a token/constraint are not new arbitrary design presets.
@@ -103,7 +103,7 @@ Breakpoints are **candidates**, not device labels or a demand to create six `@me
 
 **Design-mode procedure**
 
-1. Inspect existing tokens. If present, use them exclusively for their respective categories.
+1. Inspect existing tokens. In `design` and `improve`, reuse them for their respective categories. In an authorized `creative` redesign, identify which stylistic roles may deliberately change while retaining coherent tokens, using the tables for any new fixed choices.
 2. If not, select the few scales needed from this document and create named tokens in the project's style language.
 3. Use those tokens consistently in spacing, typography, controls, decoration and interaction. Avoid one-off numbers.
 4. In the design handoff, identify the selected scales briefly (for example: `space 4/8/16/24; type 14/16/24; radius 8; control 40; elevation none`).
