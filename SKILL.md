@@ -19,6 +19,24 @@ Always UI is a two-mode Agent Skill: `design` recommends suitable UI structures 
 - If mode is omitted, choose **design** for creation/planning and **check** for critique/fixes; say which mode was assumed. Do not ask for a mode when intent is clear.
 - If both are requested, run **design → check** as two distinct passes. Do not turn a localized check into an unauthorized redesign.
 
+## Reference-first workflow — mandatory
+
+**Read the relevant Always UI reference files before deciding, generating, changing or reviewing UI.** These files are the Skill's instructions, **not optional inspiration**. Do not skip them and improvise from memory. Follow the documented classifications, checks and numeric tables rather than inventing your own rules.
+
+| Mode | Required references, read first | What to take from them |
+| --- | --- | --- |
+| `design` | [design-archetypes.md](references/design-archetypes.md), [value-presets.md](references/value-presets.md), [visual-discipline.md](references/visual-discipline.md) | Classify the workflow, select and justify a layout, reuse existing tokens or choose documented numeric presets, and control color/button/decorative/component hierarchy |
+| `check` | [check-catalog.md](references/check-catalog.md), [visual-discipline.md](references/visual-discipline.md), [value-presets.md](references/value-presets.md) | Assess applicable documented anti-patterns, distinguish UI shell from content, and detect numeric drift **against project tokens first** |
+| `design + check` | Both sets above | Complete the design pass and then the check pass without treating either as optional |
+
+**Also read the project's design system, existing components and tokens.** Precedence is: user requirements, safety/accessibility/platform constraints and established product design decisions → project tokens and interaction contracts → Always UI's applicable guidelines and fallback numeric tables. If sources disagree, disclose the conflict and preserve the higher-priority requirement. Do not substitute a new aesthetic for the product's own visual identity.
+
+- **Before implementation:** use the selected layout guidance and documented scale; inspect the project's current tokens before writing any new fixed value.
+- **Before review:** consult the actual check catalog and report only issues grounded in visible UI/code and applicable rules. Do not use the fallback table to criticize a consistent existing scale.
+- **Technical details:** when implementing or assessing focus rings, expansion, filename rendering or native drag regions, **read** [implementation-notes.md](references/implementation-notes.md) before deciding how to handle that behavior.
+- **Optional style, by design:** [visual-guidance.md](references/visual-guidance.md) is **only** for products that explicitly choose its restrained/tonal aesthetic; it must not become the default look.
+- If required files cannot be accessed, **say which references were unavailable** and do not claim a fully Skill-guided design/check. Request or retrieve the files instead of silently replacing their guidance with guesswork.
+
 ## Shared principles
 
 1. Read the user's requirements and the product's existing design system first. Preserve brand personality, platform conventions, chosen components, interaction contracts, and security boundaries.
@@ -72,10 +90,8 @@ When selecting fixed UI design values, follow [references/value-presets.md](refe
 
 **Check report format:** `severity | location | observed issue | user impact | minimal change | verification status`. Keep findings specific; avoid a laundry list of style opinions.
 
-## Load references only when useful
+## Before you finish
 
-- `design`: read [references/design-archetypes.md](references/design-archetypes.md) and [references/value-presets.md](references/value-presets.md) when planning or implementing fixed visual measurements.
-- `check`: read [references/check-catalog.md](references/check-catalog.md).
-- **Both modes:** read [references/visual-discipline.md](references/visual-discipline.md) when considering colors, buttons, decorative effects or repeated cards; its four principles should inform the design/check pass without forcing a preset style.
-- For relevant implementation tasks (focus, collapse, filenames, desktop drag): [references/implementation-notes.md](references/implementation-notes.md).
-- For products that already request restrained/tonal visual aesthetics: optional [references/visual-guidance.md](references/visual-guidance.md). **Never apply this as a default theme.**
+- **`design`:** confirm that the chosen archetype, numeric decisions and visual discipline were grounded in the **required references**, not made up on the fly. Name the project's existing token system or the chosen fallback scale when relevant.
+- **`check`:** confirm the reported issues map to the documented catalog or evidence-backed design principles; explain valid exceptions rather than manufacturing complaints.
+- **Both:** preserve the project's own style, distinguish verified behavior from assumptions, and do not claim to have consulted unread or inaccessible files.
