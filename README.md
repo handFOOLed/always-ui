@@ -6,9 +6,17 @@
 
 A chat app shouldn't be forced into a dashboard layout. And one selected item doesn't need a border, a checkbox, and another checkmark to make its point.
 
-**Always UI** is a UI/UX design skill for desktop coding agents. Before you start building, it helps figure out what layout actually fits your app. Afterward, it checks what looks wrong, feels awkward, or gets in the way.
+**Always UI** is a UI/UX skill for desktop coding agents. Want a completely different look, the right layout from scratch, or just a few fixes without changing the style? Pick how far to go. Use `check` when you only want an audit.
 
 ## What it does
+
+### `creative` — Give it a genuinely different look
+
+Changing purple to blue isn't a redesign. `creative` looks at the original interface, then explores a new visual direction that actually feels different—without throwing away the product's purpose, functionality or stated brand constraints.
+
+```text
+$always-ui creative Redesign this app with a distinctly different visual style.
+```
 
 ### `design` — Get the layout right first
 
@@ -23,6 +31,16 @@ $always-ui design Help me plan the main interface for my app.
 ```
 
 [See the 11 layout guides](references/design-archetypes.md) · [Browse the numeric presets](references/value-presets.md)
+
+### `improve` — Polish it without starting over
+
+Like the current design, but a few things feel off? `improve` keeps your layout, colors and overall personality. It fixes details like spacing, button hierarchy and unnecessary borders. **Small changes, same product.**
+
+```text
+$always-ui improve Polish this settings screen without changing its look.
+```
+
+[See how the three design levels differ](references/design-intensity.md)
 
 ### `check` — Find what looks wrong or doesn't work
 
@@ -65,7 +83,7 @@ npm install -g skills
 skills add handFOOLed/always-ui
 ```
 
-These npm commands use the [Skills CLI](https://github.com/vercel-labs/skills) to install the skill from GitHub. Once it's installed, just enter `$always-ui design` or `$always-ui check` in your agent.
+These npm commands use the [Skills CLI](https://github.com/vercel-labs/skills) to install the skill from GitHub. Once it's installed, use `$always-ui creative`, `$always-ui design`, `$always-ui improve` or `$always-ui check` in your agent.
 
 A real-world visual comparison: [Agent dashboard A/B case study](examples/agent-dashboard-ab/README.md).
 
