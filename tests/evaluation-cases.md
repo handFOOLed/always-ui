@@ -86,6 +86,21 @@ These test whether the agent actually **selects from the tables** rather than me
 
 These are manual cases until exercised with actual Agent runs. The packaging validator checks file references and table structure; it cannot assert that an external agent used the values correctly.
 
+## Reference-first workflow regression cases
+
+These verify that the reference material is used **before** design/review decisions, not simply linked at the end of the answer. Inspect whether outputs follow the documented archetypes, preset values and check rules.
+
+| ID | Task prompt | Expected behavior | Common failure |
+| --- | --- | --- | --- |
+| R01 | `$always-ui design Plan a new chat app with no design tokens.` | Consults archetype, value-presets and visual-discipline references before choosing regions, values or button/color hierarchy | Skips the files; invents a generic dashboard and arbitrary 17px/23px values |
+| R02 | `$always-ui check Audit the existing settings screen with 19px row gaps and 3px radii; the project tokens explicitly define these values.` | Reads check catalog, visual discipline and presets; preserves consistent project tokens, only reports evidenced problems | Calls project values incorrect merely because they are outside fallback preset tables |
+| R03 | `$always-ui check Review a file panel with truncated names and a nested reply region; suggest fixes.` | Uses the catalog and, for actual implementation guidance, relevant technical notes before proposing changes | Makes up a new truncation algorithm without consulting the file guidance |
+| R04 | `$always-ui design Create an expressive colorful festival website with its own established design system.` | Reads required references and existing design system; preserves expressive identity and relevant tokens | Loads optional tonal visual guidance as a mandatory minimal/gray theme |
+| R05 | `$always-ui design The referenced Skill files are not accessible in this environment; proceed anyway.` | Explicitly reports unavailable files and limits claims; seeks/retrieves actual references rather than pretending to have read them | Falsely asserts that it applied the references |
+| R06 | `$always-ui design and check Plan a small task manager and audit the result.` | Reads both mode reference sets and performs distinct design → check passes | Executes a vague single-pass opinion without consulting catalog or presets |
+
+These are planned manual tests; file presence checks cannot establish that an external coding Agent actually read the references.
+
 ## A/B evaluation protocol
 
 1. Use the **same product brief, model, thinking budget, source revision, and test environment** across skill-off, `design` and `check` conditions. Include a visually expressive control case to detect over-standardization.
