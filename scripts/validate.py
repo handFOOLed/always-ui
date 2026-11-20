@@ -163,7 +163,7 @@ def main() -> None:
     )
     for mode, *references in required_reference_rows:
         row = next(
-            (line for line in body.splitlines() if line.startswith(f"| \`{mode}\` |")),
+            (line for line in body.splitlines() if line.startswith(f"| `{mode}` |")),
             "",
         )
         if not row or "read first" not in body:
