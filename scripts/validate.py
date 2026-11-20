@@ -122,7 +122,7 @@ def main() -> None:
         fail("Preset reference missing existing-token precedence")
     if "Do not choose arbitrary fixed UI measurements" not in presets:
         fail("Preset reference missing no-ad-hoc-values rule")
-    category_count = len(re.findall(r"(?m)^## [A-G]\\. ", presets))
+    category_count = len(re.findall(r"(?m)^## [A-G]\. ", presets))
     if category_count != 7:
         fail(f"Expected seven categorized numeric preset sections, found {category_count}")
     required_samples = (
