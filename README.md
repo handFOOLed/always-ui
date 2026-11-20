@@ -67,6 +67,8 @@ skills add handFOOLed/always-ui
 
 These npm commands use the [Skills CLI](https://github.com/vercel-labs/skills) to install the skill from GitHub. Once it's installed, just enter `$always-ui design` or `$always-ui check` in your agent.
 
+A real-world visual comparison: [Agent dashboard A/B case study](examples/agent-dashboard-ab/README.md).
+
 ---
 
 Maintained by [handFOOLed](https://github.com/handFOOLed). Issues and contributions are welcome.
