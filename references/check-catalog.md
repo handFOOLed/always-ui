@@ -1,6 +1,6 @@
-# Check mode — UI anti-pattern catalog
+# UI anti-pattern catalog — check and improve
 
-Check the **actual interface** against its task and design system. This is a defect-finding guide, **not** an aesthetic template. Do not call a UI "ugly" merely because it is expressive, minimal, dense, dark, playful or unfamiliar.
+In `check`, audit the **actual interface** without editing. In `improve`, use evidenced findings to guide small corrective changes within the existing visual style. This is a defect-finding guide, **not** an aesthetic template. Do not call a UI "ugly" merely because it is expressive, minimal, dense, dark, playful or unfamiliar.
 
 For each applicable rule, record: **where → what is visible/behaves incorrectly → why it impairs task or coherence → smallest fix → how to verify**. Distinguish observed evidence from unverified inference.
 
