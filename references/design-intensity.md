@@ -52,6 +52,14 @@ These modes change **how much the Agent is allowed to redesign**, not whether it
 - **Deliver:** what is already working and will remain → specific small changes and why → before/after comparison or patch when requested → what has actually been verified.
 - If the problem cannot be fixed without a structural rethink, explain why and suggest `design` or `creative` as a **separate decision**; don't silently escalate.
 
+## Check — audit without edits
+
+**Use:** `$always-ui check Review this page for visual and interaction problems.`
+
+- Use [check-catalog.md](check-catalog.md) with the required visual and value references to identify concrete, observable problems.
+- Explain severity, location, impact, minimal correction and verification limitations. Keep valid expressive choices and purposeful exceptions.
+- **Do not modify the UI**, invent functionality defects from screenshots, or silently convert a review into `improve`. A follow-up fix request is separate.
+
 ## Choosing among the modes
 
 - **“Try a totally different look”** → `creative`.
