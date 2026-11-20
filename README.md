@@ -22,7 +22,7 @@ It covers **11 types of interfaces**, including chat, SaaS workspaces, analytics
 $always-ui design Help me plan the main interface for my app.
 ```
 
-[See the 11 layout guides](references/design-archetypes.md)
+[See the 11 layout guides](references/design-archetypes.md) · [Browse the numeric presets](references/value-presets.md)
 
 ### `check` — Find what looks wrong or doesn't work
 

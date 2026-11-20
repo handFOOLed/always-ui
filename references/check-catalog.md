@@ -33,9 +33,9 @@ For each applicable rule, record: **where → what is visible/behaves incorrectl
 - **Do NOT flag:** spacious reading products or dense expert data consoles purely for their density.
 
 ### C06 — Alignment, rhythm, and scale drift
-- **Look for:** inconsistent columns and baseline alignment, arbitrary gaps, near-identical font sizes competing, mismatched corner/spacing systems within one UI.
-- **Prefer:** reuse tokens and meaningful alignment axes; repeat consistent patterns for comparable components.
-- **Do NOT flag:** deliberate asymmetry, editorial composition, or platform-native widgets for being different.
+- **Look for:** inconsistent columns and baseline alignment, arbitrary gaps and one-off values (such as 17px padding beside a 16px token), near-identical font sizes competing, mismatched corner/spacing systems within one UI.
+- **Prefer:** reuse the product's own spacing/type/radius tokens and meaningful alignment axes; when creating a new scale, choose from [value presets](value-presets.md) rather than inventing numbers.
+- **Do NOT flag:** deliberate asymmetry, a coherent established nonpreset scale, platform-native metrics, accessibility overrides, or exact asset dimensions.
 
 ### C07 — Too many navigation surfaces
 - **Look for:** sidebar, top tabs, secondary subnav, floating dock, contextual tabs and card menus all offering duplicated destinations.

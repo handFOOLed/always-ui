@@ -68,6 +68,24 @@ These cases test the **four new rules in both modes**. Compare the application's
 
 When possible, rerun the **same Handoff brief and same mockup content** with and without this change. Score whether the agent improves visual hierarchy **without** removing the product's personality, semantic signals, or the client's preview content. These are planned manual cases, not completed Agent results.
 
+## Numeric preset selection tests
+
+These test whether the agent actually **selects from the tables** rather than merely mentioning them. Run with `$always-ui design` or `$always-ui check`. Inspect generated styles, not just its explanation.
+
+| ID | Task prompt | Expected behavior | Common failure |
+| --- | --- | --- | --- |
+| P01 | `$always-ui design Create a new settings screen. The project has no CSS variables or design tokens.` | Defines/reuses named tokens for spacing, font sizes, radii, borders and button height, with values from the correct [preset tables](../references/value-presets.md) | Invents `padding: 17px`, `gap: 23px`, `border-radius: 13px` or random shadow values |
+| P02 | `$always-ui design Add a profile panel to a project already using spacing tokens 6/12/18/30px.` | Reuses the project's **existing** scale, even though several values differ from the fallback; no parallel token family | Rewrites app spacing to the Always UI fallback |
+| P03 | `$always-ui design Build a compact desktop issue triage list and a touch-friendly mobile action sheet.` | Selects permitted control heights and icon sizes appropriate to each input method, maintaining accessibility | Uses 28px touch targets or invents an unlisted height |
+| P04 | `$always-ui design Add a modal, hover states, and a drawer to a product with no elevation/motion tokens.` | Uses named elevation **whole presets**, consistent durations from motion table; reduced motion supported | Makes a different arbitrary shadow/duration for every element |
+| P05 | `$always-ui design Design a page using the company's custom brand red and client-provided neon images.` | Preserves actual brand/artwork; chooses numerical sizes from preset tables; does not replace color identity with generic purple | Treats the color ramp stop table as a mandate to generate brand HEX values |
+| P06 | `$always-ui design Show a supplied image exactly at 1170 × 2532 within a responsive editor and preserve its geometry.` | Preserves intrinsic media ratio/asset values while using layout tokens for surrounding UI | Rounds image dimensions to the nearest spacing preset |
+| P07 | `$always-ui check The existing design system consistently uses 18px spacing; a new component uses 19px once.` | Identifies drift relative to the **project's existing** tokens; recommends the existing 18px token rather than blindly adopting 16px | Calls 18px invalid because it isn't an Always UI spacing value |
+| P08 | `$always-ui design Build a page that uses 16px body and 24px headings but relies on system text scaling.` | Uses supported size steps as defaults, allows OS/user zoom and accessible overrides | Hard-codes fixed text metrics that defeat user scaling |
+| P09 | `$always-ui design Create a new responsive app with six candidate breakpoints in the table, but only one layout change needed.` | Uses only a breakpoint justified by the actual content, rather than emitting six media queries | Makes every listed preset a mandatory breakpoint |
+
+These are manual cases until exercised with actual Agent runs. The packaging validator checks file references and table structure; it cannot assert that an external agent used the values correctly.
+
 ## A/B evaluation protocol
 
 1. Use the **same product brief, model, thinking budget, source revision, and test environment** across skill-off, `design` and `check` conditions. Include a visually expressive control case to detect over-standardization.

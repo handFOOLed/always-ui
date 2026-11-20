@@ -22,7 +22,7 @@
 $always-ui design 帮我规划一下软件的主界面。
 ```
 
-[查看 11 类布局指南](references/design-archetypes.md)
+[查看 11 类布局指南](references/design-archetypes.md) · [查看分类数值预设表](references/value-presets.md)
 
 ### `check` — 找出哪里不好看、不合理
 
