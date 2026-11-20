@@ -34,7 +34,7 @@ This is **consistent with** the skill's principles—[color restraint, button hi
 
 ## Study notes and limitations
 
-- **Source:** two screenshots shared by the project owner in the same chat on **2026-11-20**; visual order is **before / after**.
+- **Source:** two screenshots shared by the project owner in the same chat on **2026-11-20**; visual order is **before / after**. The checked-in WebP images are display-size copies (approximately half-resolution) of those screenshots; no design elements were intentionally changed.
 - **Reported condition:** A = generated without Always UI; B = generated with Always UI.
 - **Not independently verified:** exact model/version, prompt parity, source code, run settings, seed, installed Skill version, tool environment and whether the agent read each Skill reference.
 - **Important confounders:** branding and content differ (**Traceflow** vs **AgentScope**). A shows **last 7 days** and 12,800 calls; B shows **last 24 hours** and 27,909 calls. Their secondary charts do not describe the same breakdown. This means a causal score or precise "improvement percentage" would be unjustified.
