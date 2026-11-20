@@ -19,6 +19,7 @@ REQUIRED_FILES = (
     "references/check-catalog.md",
     "references/implementation-notes.md",
     "references/visual-guidance.md",
+    "references/value-presets.md",
     "tests/evaluation-cases.md",
 )
 
@@ -112,6 +113,34 @@ def main() -> None:
             fail(f"Visual discipline reference missing V{index:02d}: {rule}")
         if f"C{20 + index:02d} — {rule}" not in checks:
             fail(f"Check catalog missing C{20 + index:02d}: {rule}")
+
+    presets_path = ROOT / "references/value-presets.md"
+    presets = presets_path.read_text(encoding="utf-8")
+    if "[references/value-presets.md](references/value-presets.md)" not in body:
+        fail("SKILL.md does not load the numeric preset tables")
+    if "Existing project tokens win" not in presets:
+        fail("Preset reference missing existing-token precedence")
+    if "Do not choose arbitrary fixed UI measurements" not in presets:
+        fail("Preset reference missing no-ad-hoc-values rule")
+    category_count = len(re.findall(r"(?m)^## [A-G]\\. ", presets))
+    if category_count != 7:
+        fail(f"Expected seven categorized numeric preset sections, found {category_count}")
+    required_samples = (
+        "4 · 8 · 12 · 16",
+        "12 · 14 · 16 · 18",
+        "400 · 500 · 600 · 700",
+        "0 · 1 · 2",
+        "0.05 · 0.1 · 0.2",
+        "elevation-5",
+        "100 · 150",
+        "480 · 640 · 768",
+    )
+    for sample in required_samples:
+        if sample not in presets:
+            fail(f"Missing preset sequence or token: {sample}")
+    tests = (ROOT / "tests/evaluation-cases.md").read_text(encoding="utf-8")
+    if not all(f"| P{index:02d} |" in tests for index in range(1, 10)):
+        fail("Expected nine numeric preset regression cases (P01-P09)")
 
     print(
         f"PASS: {name}; modes=design/check; "
