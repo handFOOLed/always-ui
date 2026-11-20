@@ -6,9 +6,17 @@
 
 聊天软件不该硬套数据看板的布局。一个选中状态，也不需要外框、复选框和勾号反复强调。
 
-**Always UI** 是给桌面 Agent 用的UI/UX设计 Skill：它会在开工之前先判断软件适合什么布局，也会在完工后检查界面哪里不合理、不好用。
+**Always UI** 是给桌面 Agent 用的 UI/UX 设计 Skill。想完全换个风格、从头规划布局，还是只做一点微调？三档设计强度自己选。设计完还能用 `check` 检查哪里不合理、不好用。
 
 ## 主要功能
+
+### `creative` — 换一种真正不一样的风格
+
+换个主题色、加点渐变，不算重新设计。`creative` 会先看原来的样子，再探索明显不同、但仍符合产品定位的视觉方向。布局、排版和组件风格可以重新思考，功能与明确的品牌要求不能随手丢掉。
+
+```text
+$always-ui creative 为这个软件重新设计一个与旧版明显不同的风格。
+```
 
 ### `design` — 先想清楚怎么布局
 
@@ -23,6 +31,16 @@ $always-ui design 帮我规划一下软件的主界面。
 ```
 
 [查看 11 类布局指南](references/design-archetypes.md) · [查看分类数值预设表](references/value-presets.md)
+
+### `improve` — 保留当前样子，改掉别扭的地方
+
+不想推倒重来？`improve` 保留现有的布局、配色和视觉个性，只调整真正影响体验的间距、按钮层级、重复边框等细节。**小修小改，不偷偷重设计。**
+
+```text
+$always-ui improve 优化当前设置页，保留原来的视觉风格和布局。
+```
+
+[查看三档设计强度的区别](references/design-intensity.md)
 
 ### `check` — 找出哪里不好看、不合理
 
@@ -65,7 +83,7 @@ npm install -g skills
 skills add handFOOLed/always-ui
 ```
 
-npm命令使用的是 [Skills CLI](https://github.com/vercel-labs/skills)，通过 GitHub 安装 Skill。安装完成后，在 Agent 中输入 `$always-ui design` 或 `$always-ui check` 即可。
+npm命令使用的是 [Skills CLI](https://github.com/vercel-labs/skills)，通过 GitHub 安装 Skill。安装完成后，在 Agent 中使用 `$always-ui creative`、`$always-ui design`、`$always-ui improve` 或 `$always-ui check` 即可。
 
 真实案例：[Agent 数据看板 A/B 视觉对照](examples/agent-dashboard-ab/README.zh-CN.md)。
 

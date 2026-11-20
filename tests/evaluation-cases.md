@@ -1,6 +1,6 @@
-# Always UI evaluation scenarios — design and check
+# Always UI evaluation scenarios — creative, design, improve and check
 
-Use these as **behavioral evaluations**, not merely text-matching tests. Run the explicit `$always-ui design` or `$always-ui check` invocation when stated. Run the same task on a small sample app with and without the skill. Examine changed code, interaction recordings, and the agent's final report. The agent must not claim an interaction was tested unless actually exercised.
+Use these as **behavioral evaluations**, not merely text-matching tests. Run the explicit `$always-ui creative`, `$always-ui design`, `$always-ui improve` or `$always-ui check` invocation when stated. Run the same task on a small sample app with and without the skill. Examine changed code, interaction recordings, and the agent's final report. The agent must not claim an interaction was tested unless actually exercised.
 
 ## Check-mode regression cases (existing safeguards)
 
@@ -101,10 +101,31 @@ These verify that the reference material is used **before** design/review decisi
 
 These are planned manual tests; file presence checks cannot establish that an external coding Agent actually read the references.
 
+## Design-intensity regression cases
+
+Run all three design levels against the **same original UI/brand/requirements**. Evaluate whether the Agent respects the specified depth of change. The independent `check` mode should never silently become an edit.
+
+| ID | Task prompt | Expected behavior | Common failure |
+| --- | --- | --- | --- |
+| M01 | `$always-ui creative The attached light Agent dashboard is the old design. Create a visually distinct direction while preserving its metrics.` | Describes baseline, proposes a meaningfully different visual language/composition without losing data or task fit | Only changes purple to blue or adds glows |
+| M02 | `$always-ui creative Redesign our product; the logo and red brand color are non-negotiable.` | Changes other visual axes while preserving the explicit brand constraints | Ignores the required logo/red or claims differentiation is impossible without trying |
+| M03 | `$always-ui creative Give me an entirely different look, but I have not supplied any prior UI or source.` | Offers a new direction but says a difference from the original cannot be verified without baseline evidence | Fabricates details about an unseen old design |
+| M04 | `$always-ui creative Try a bold, expressive festival interface, not a generic SaaS dashboard.` | Preserves intentional expressiveness and task hierarchy while choosing coherent numeric tokens | Mistakes creativity for neon on every control or forces muted minimalism |
+| M05 | `$always-ui design Build a team-chat workbench and plan its navigation, layout and responsive states.` | Classifies chat as core workflow, selects justified structure and consistent tokens | Treats every project as SaaS KPI cards |
+| M06 | `$always-ui design Improve the information architecture of an established branded dashboard.` | Can reorganize task-led layout, but preserves established visual brand unless explicitly told otherwise | Quietly rebrands fonts, colors and component language |
+| M07 | `$always-ui improve This dashboard has inconsistent gaps and competing buttons; keep its visual style.` | Makes minimal, targeted improvements using existing tokens; layout and brand remain recognizable | Replaces sidebar, color system or chart layout |
+| M08 | `$always-ui improve The navigation is structurally unusable and a small patch is insufficient.` | Reports why a larger design change is required and suggests switching modes, without escalating automatically | Performs full redesign in improve mode |
+| M09 | `$always-ui improve The project uses 6/12/18px spacing tokens, but the fallback table contains 4/8/16px.` | Reuses the established scale; does not introduce the fallback scale | Normalizes all spacing to new token family |
+| M10 | `$always-ui check Inspect the screenshot, do not edit anything.` | Reports evidence-based issues only, with uncertainty about untested interactions | Changes code or guesses runtime bugs |
+| M11 | `$always-ui creative and check Redesign a library, then separately audit the resulting UI.` | Uses creative references first, then distinct check pass and findings, preserving specified redesign scope | Treats check as license for an unrelated third redesign |
+| M12 | `Use Always UI to make the existing controls less cluttered, without a new layout.` | Infers **improve** and says so | Defaults to design/creative or asks for a mode despite clear intent |
+
+These are **manual scenarios**, not evidence that an external Agent obeys the modes. Preserve a reproducible baseline and compare screenshots **and** code to catch unapproved structural edits.
+
 ## A/B evaluation protocol
 
-1. Use the **same product brief, model, thinking budget, source revision, and test environment** across skill-off, `design` and `check` conditions. Include a visually expressive control case to detect over-standardization.
-2. For **design**, score 0–2: task diagnosis, justified layout alternatives, useful responsive/states, preservation of user identity and creative range, scope discipline.
+1. Use the **same product brief, model, thinking budget, source revision, and test environment** across skill-off, `creative`, `design`, `improve` and `check` conditions. Keep a shared baseline screenshot/code for the three design intensities. Include a visually expressive case to detect over-standardization.
+2. For **creative**, score 0–2: visible difference from baseline, coherence, product fit, preservation of constraints and accessibility. For **design**, score 0–2: task diagnosis, justified structure, responsive/states, approved brand preservation. For **improve**, score 0–2: minimal justified edits, identity/layout preservation, defect reduction and honest verification.
 3. For **check**, score 0–2: defect accuracy, false-positive avoidance, smallest plausible fix, accessibility/semantics correctness, verification honesty.
 4. Prefer human/observed interaction review to self-scoring. Inspect changed code and UI captures. Mark untested aspects, not “passed.”
 5. Document failures, regressions, and what improved. Static link validation is **not** an A/B result.
