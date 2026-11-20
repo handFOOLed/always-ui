@@ -1,6 +1,6 @@
-# Design mode — 11 UI archetypes
+# Layout archetypes — creative and design
 
-**Use cases, not universal templates.** Select by what users spend most of their time doing. "SaaS" is a delivery/business model: a SaaS product may be a chat app, analytics workspace, editor, or operations console. The labels below describe dominant workflows, not mutually exclusive industries.
+**Use cases, not universal templates.** In `creative` and `design`, select by what users spend most of their time doing. `improve` should preserve an established layout unless the user explicitly requests a larger change. "SaaS" is a delivery/business model: a SaaS product may be a chat app, analytics workspace, editor, or operations console. The labels below describe dominant workflows, not mutually exclusive industries.
 
 ## Diagnose before choosing
 
