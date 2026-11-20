@@ -1,6 +1,6 @@
 # Visual discipline — four shared rules
 
-Use this reference for both `design` and `check`. These are **decision tests**, not a required aesthetic. The goal is to reduce visual competition without turning expressive brands into grayscale templates.
+Use this reference for all four modes: `creative`, `design`, `improve` and `check`. These are **decision tests**, not a required aesthetic. The goal is to reduce visual competition without turning expressive brands into grayscale templates.
 
 **First separate the product's own UI chrome from its content.** A design-review app may display a client's neon poster, colorful dashboard, or gradient artwork. Judge the app's navigation, controls, overlays, labels, and status feedback independently of the artwork being previewed. Do not recolor user-generated content to make the shell look quieter.
 
@@ -67,8 +67,14 @@ Use this reference for both `design` and `check`. These are **decision tests**, 
 
 ## How to apply these rules
 
+### In `creative`
+Apply these rules to the **new** visual language without forcing a muted or generic theme. Creativity may justify stronger colors, geometry or motion when they serve the brand and do not impair the task. Compare the new shell with the inspected baseline; do not treat swapping hue as meaningful redesign.
+
 ### In `design`
 After choosing an archetype and planning interactions, perform a short **visual discipline pass**: define color roles; decide the primary action in each action group; justify conspicuous effects; choose where cards are actually needed. This is a private design decision process, **not** a request to write a long aesthetic manifesto. Mention only decisions materially relevant to the result.
+
+### In `improve`
+Apply the same criteria using the **existing project's** tokens and identity. Fix a small number of observable issues; do not replace navigation, theme or component vocabulary without explicit permission.
 
 ### In `check`
 Inspect the actual screen and identify **observable** instances before raising an issue. Report location, evidence, user impact, minimal adjustment, and whether the behavior was tested. Mark purely stylistic recommendations as optional; avoid false positives for intentional expressive brands.
