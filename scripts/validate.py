@@ -142,6 +142,41 @@ def main() -> None:
     if not all(f"| P{index:02d} |" in tests for index in range(1, 10)):
         fail("Expected nine numeric preset regression cases (P01-P09)")
 
+    # Required mode references must be explicit. Do not regress to "when useful".
+    if "## Reference-first workflow — mandatory" not in body:
+        fail("SKILL.md missing mandatory reference-first workflow")
+    if "Load references only when useful" in content:
+        fail("SKILL.md still treats core references as optional")
+    required_reference_rows = (
+        (
+            "design",
+            "references/design-archetypes.md",
+            "references/value-presets.md",
+            "references/visual-discipline.md",
+        ),
+        (
+            "check",
+            "references/check-catalog.md",
+            "references/visual-discipline.md",
+            "references/value-presets.md",
+        ),
+    )
+    for mode, *references in required_reference_rows:
+        row = next(
+            (line for line in body.splitlines() if line.startswith(f"| \`{mode}\` |")),
+            "",
+        )
+        if not row or "read first" not in body:
+            fail(f"Missing mandatory {mode} reference instruction")
+        for reference in references:
+            if reference not in row:
+                fail(f"Missing required {mode} reference: {reference}")
+    if "project tokens and interaction contracts" not in body:
+        fail("Missing existing project token precedence")
+    tests = (ROOT / "tests/evaluation-cases.md").read_text(encoding="utf-8")
+    if not all(f"| R{index:02d} |" in tests for index in range(1, 7)):
+        fail("Expected six reference-first regression cases (R01-R06)")
+
     print(
         f"PASS: {name}; modes=design/check; "
         f"{archetype_count} archetypes; {check_count} checks; "
