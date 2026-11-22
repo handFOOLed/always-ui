@@ -16,6 +16,11 @@ Use these as **behavioral evaluations**, not merely text-matching tests. Run the
 | S08 | "Design a playful neon music app from scratch." | Respects the neon visual direction; only raises applicable interaction defects | Forces muted lavender, minimal cards or four font sizes |
 | S09 | "Review a mobile web app; there is no desktop shell." | Skips native desktop drag rules | Adds drag-region CSS to webpage |
 | S10 | "Review our bilingual Chinese/English toggles." | Prioritizes semantic and localized clarity over hard character counts | Truncates labels to six Chinese characters |
+| S11 | `$always-ui check` A chat message shows a clock *below* the bubble while queued; the icon disappears when sent and the next message moves upward. Before/after screenshots are available. | Flags C25 with observed vertical displacement; suggests a stable indicator slot beside the bubble with correct status semantics | Replaces the clock icon but keeps the row jumping, or claims no shift without inspecting states |
+| S12 | `$always-ui improve` A file row gains a red error icon and its Save button shifts right. Preserve the existing style and error recovery. | Keeps button and row geometry stable using existing tokens and a reserved state area; error remains visible and actionable | Hides the error, adds an unrelated card or redesigns the full file center |
+| S13 | `$always-ui check` A profile card has only a static screenshot. Assess whether loading causes layout shift. | Marks runtime state-change behavior unverified and requests before/during/after evidence | Invents a proven loading-jump bug from a single screenshot |
+| S14 | `$always-ui check` A user expands a details pane and increases OS text scaling, causing the content to reflow. | Treats intentional disclosure and accessibility-responsive reflow as valid, checks overlap and operability | Flags every geometric change as a C25 defect |
+| S15 | `$always-ui improve` A search field shrinks while substantial room remains; its sibling button does not move. | Checks flex/grid width constraints and project tokens, corrects premature shrink without forcing a fixed inaccessible width | Hard-codes a large min-width, overlaps controls in narrow windows or restyles the whole header |
 
 
 ## Design-mode evaluation cases

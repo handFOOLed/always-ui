@@ -37,7 +37,7 @@ Always UI offers three **design intensities**—`creative`, `design`, `improve`�
 
 - **Before implementation:** use the selected layout guidance and documented scale; inspect the project's current tokens before writing any new fixed value.
 - **Before review:** consult the actual check catalog and report only issues grounded in visible UI/code and applicable rules. Do not use the fallback table to criticize a consistent existing scale.
-- **Technical details:** when implementing or assessing focus rings, expansion, filename rendering or native drag regions, **read** [implementation-notes.md](references/implementation-notes.md) before deciding how to handle that behavior.
+- **Technical details:** when implementing or assessing focus rings, expansion, filename rendering, state-driven geometry or native drag regions, **read** [implementation-notes.md](references/implementation-notes.md) before deciding how to handle that behavior.
 - **Optional style, by design:** [visual-guidance.md](references/visual-guidance.md) is **only** for products that explicitly choose its restrained/tonal aesthetic; it must not become the default look.
 - If required files cannot be accessed, **say which references were unavailable** and do not claim a fully Skill-guided design/check. Request or retrieve the files instead of silently replacing their guidance with guesswork.
 
@@ -49,6 +49,7 @@ Always UI offers three **design intensities**—`creative`, `design`, `improve`�
 4. Distinguish an **accessibility/semantic defect**, a **task-level design issue**, and a **subjective aesthetic preference**. Evidence beats taste.
 5. Restrict changes to the authorized scope. Design-only tasks produce plans; implementation and cleanup require their own authorization.
 6. Do not claim to have viewed screenshots, run UI tests, measured contrast or tested touch/keyboard unless actually done.
+7. **Stable geometry across states:** for the same control or repeated row, prefer stable dimensions, alignment and neighboring positions as pending/loading/success/error/selection states change. Do not let a disappearing status icon or a loading placeholder cause avoidable layout jumps. Check [C25](references/check-catalog.md) and [implementation notes](references/implementation-notes.md) for evidence and techniques. Real content growth, deliberate disclosure, responsive layout and accessibility-driven changes may legitimately reflow.
 
 ## Four visual discipline rules — all modes
 
@@ -96,7 +97,7 @@ When selecting fixed UI design values, follow [references/value-presets.md](refe
 
 1. **Inspect the existing UI and its approved design system** before changing anything. Read [design-intensity.md](references/design-intensity.md), [check-catalog.md](references/check-catalog.md), [value-presets.md](references/value-presets.md) and [visual-discipline.md](references/visual-discipline.md).
 2. **Preserve the recognizable product:** navigation, overall composition, palette roles, typography personality and component family stay in place. The user asked for refinement, **not** a new style.
-3. **Choose a few high-impact corrections:** inconsistent spacing, crowded controls, redundant framing, weak information hierarchy, too many loud buttons, unclear state feedback, subtle accessibility improvements.
+3. **Choose a few high-impact corrections:** inconsistent spacing, crowded controls, redundant framing, weak information hierarchy, too many loud buttons, unclear state feedback, subtle accessibility improvements, avoidable shifts between transient component states.
 4. **Reuse the existing tokens** and components; any new fixed value must follow the preset-selection rules. Avoid replacing whole page structures, rebranding, global component rewrites or introducing new features.
 5. **Deliver:** what is kept → each small change and its reason → before/after evidence where available → verification status. If structural redesign is necessary, explain and propose switching modes; **do not escalate automatically**.
 6. Implement only within the user's authorized scope.
@@ -104,11 +105,12 @@ When selecting fixed UI design values, follow [references/value-presets.md](refe
 ## Mode: check
 
 1. **Observe** the actual UI and any available screenshots/code/design system. Record screen, platform, viewport and confidence. Without runtime or images, mark visual and interaction conclusions as hypotheses.
-2. Apply the relevant checks in [references/check-catalog.md](references/check-catalog.md): boundary duplication (frame inside frame), selection over-signaling, incorrect checkboxes/switches/radios, poor hierarchy, excessive decoration, density, inconsistency, feedback/focus/motion and device interaction. Specifically inspect **color restraint, button hierarchy, decoration justification and component economy** using [references/visual-discipline.md](references/visual-discipline.md). Where numeric inconsistency matters, compare values against the **existing project tokens** first, then the fallback [value presets](references/value-presets.md) only for newly introduced scales. Do not treat a coherent established scale as a defect simply because its numbers differ.
-3. **Explain the user's problem, not just the style violation.** A decorative border is not automatically wrong; it is wrong when it muddies grouping, click targets, or hierarchy. An unusual layout is not wrong solely for being unusual.
-4. Classify findings: **Defect** (broken, misleading, inaccessible), **High-confidence design issue** (material task friction), or **Optional polish** (taste). Rank by impact and reversibility, not aesthetic fashion.
-5. Recommend the **smallest corrective action**, naming what should remain unchanged. Provide observable acceptance checks and distinguish tested from untested behavior.
-6. Only edit code if the user requested implementation or fixes.
+2. Apply the relevant checks in [references/check-catalog.md](references/check-catalog.md): boundary duplication (frame inside frame), selection over-signaling, incorrect checkboxes/switches/radios, poor hierarchy, excessive decoration, density, inconsistency, feedback/focus/motion, state-to-state geometry stability and device interaction. Specifically inspect **color restraint, button hierarchy, decoration justification and component economy** using [references/visual-discipline.md](references/visual-discipline.md). Where numeric inconsistency matters, compare values against the **existing project tokens** first, then the fallback [value presets](references/value-presets.md) only for newly introduced scales. Do not treat a coherent established scale as a defect simply because its numbers differ.
+3. When state behavior is available, compare the same component **before/during/after** loading, failure or completion; report unexpected shifts with screenshots or recordings. If only a static screenshot is available, ask for reproduction instead of claiming a dynamic defect.
+4. **Explain the user's problem, not just the style violation.** A decorative border is not automatically wrong; it is wrong when it muddies grouping, click targets, or hierarchy. An unusual layout is not wrong solely for being unusual.
+5. Classify findings: **Defect** (broken, misleading, inaccessible), **High-confidence design issue** (material task friction), or **Optional polish** (taste). Rank by impact and reversibility, not aesthetic fashion.
+6. Recommend the **smallest corrective action**, naming what should remain unchanged. Provide observable acceptance checks and distinguish tested from untested behavior.
+7. Only edit code if the user requested implementation or fixes.
 
 **Check report format:** `severity | location | observed issue | user impact | minimal change | verification status`. Keep findings specific; avoid a laundry list of style opinions.
 
