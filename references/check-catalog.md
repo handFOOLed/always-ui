@@ -139,6 +139,15 @@ These are actionable checks from [visual discipline](visual-discipline.md), not 
 - **Prefer:** list/row structure, spacing, shared panels or subtle surface differentiation where they convey the same information more clearly.
 - **Do NOT flag:** cards needed for separate actions, independent objects, selection/drag affordances, accessible targets or meaningful grouping.
 
+
+## E. State transitions and layout stability
+
+### C25 — Unnecessary layout shift across states (stable geometry)
+- **Look for:** a queued-message clock appearing below a bubble then disappearing and moving adjacent rows; a save/error indicator changing the button's horizontal position; loading placeholders much smaller than the final preview or profile; status labels or icons forcing a toolbar to resize or a search field to shrink before space is constrained.
+- **Prefer:** preserve the principal control/row geometry, alignment baselines, and neighboring positions across pending, loading, success, error, hover, selected and disabled states when the underlying content is unchanged. Reserve a consistent status slot, keep action alignment stable, and size placeholders from known final dimensions or aspect ratio. Reuse existing product tokens; do not introduce an empty decorative container just to satisfy this rule.
+- **Verify:** compare the same viewport and content across states with before/during/after screenshots or interaction recordings; inspect element bounds and neighboring displacement when the runtime is available. A static screenshot alone cannot prove a state-transition jump. Distinguish a real shift from a color/opacity change, and require truthful, accessible progress/error announcements.
+- **Do NOT flag:** real content growth, user-initiated expansion/collapse, responsive reflow due to genuinely insufficient space, accessibility text scaling or focus accommodation, and deliberate product-approved motion that does not obscure content or break interaction. Do not enforce zero pixel movement universally or hide failure feedback to keep geometry stable.
+
 ## Triage rubric
 
 | Class | Definition | What to do |
